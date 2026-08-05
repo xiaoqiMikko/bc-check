@@ -58,7 +58,23 @@ final class Report {
             }
         }
         out.println(summary.toString().trim());
+        printScope(out);
         printWarnings(out, scanner);
+    }
+
+    /**
+     * 判定范围声明。
+     *
+     * <p>必须打出来：用户看到 {@code OK} 很容易理解成「我的 Bouncy Castle 完全没问题」，
+     * 而本工具只覆盖官方 wiki 上 <b>2026 年</b>那批。更早的（如 {@code CVE-2025-14813}）不在范围内，
+     * 而那些反倒是 Dependabot 查得到的。<b>说不清判定边界，和判定错了是一回事。</b>
+     */
+    private static void printScope(PrintStream out) {
+        out.println();
+        out.println("判定范围：官方 wiki 上 2026 年的 " + CveTable.rules().size()
+                + " 条 CVE（github.com/bcgit/bc-java/wiki/CVEs）。");
+        out.println("　　　　　2026 年之前的 Bouncy Castle 漏洞不在本工具范围内 —— "
+                + "那些多数已进 OSV，Dependabot / SCA 查得到，本工具不重复造轮子。");
     }
 
     private static void printOne(PrintStream out, Detection d, boolean color, boolean detail) {
@@ -163,6 +179,10 @@ final class Report {
         sb.append("  \"tool\": \"bc-check\",\n");
         sb.append("  \"version\": \"").append(esc(toolVersion)).append("\",\n");
         sb.append("  \"scannedArchives\": ").append(scanner.scannedArchives()).append(",\n");
+        // 判定范围要跟着结果一起走：消费方拿到 severity=OK 时，得能看出这个 OK 覆盖了什么
+        sb.append("  \"scope\": {\"year\": 2026, \"cveCount\": ").append(CveTable.rules().size())
+          .append(", \"source\": \"https://github.com/bcgit/bc-java/wiki/CVEs\"")
+          .append(", \"note\": \"2026 年之前的 Bouncy Castle 漏洞不在范围内\"},\n");
         sb.append("  \"targets\": ").append(arr(targets)).append(",\n");
         sb.append("  \"gav\": ").append(arr(gavs)).append(",\n");
 

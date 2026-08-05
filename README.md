@@ -47,11 +47,16 @@ java -jar bc-check.jar --gav bcprov-lts8on:2.73.5 --detail
 
 ## 还有一件事：这批 CVE 你的 Dependabot 大概率不会告警
 
-其中 4 条 CVSS critical 在 GitHub Advisory 里的状态是 `unreviewed`，
+**这 4 条 CVSS critical** 在 GitHub Advisory 里的状态是 `unreviewed`，
 **受影响包列表是空的**（包数 0）。没有包名就无法匹配依赖树 ——
 它们不进 OSV，Dependabot 不告警，SCA 扫依赖清单也扫不出来。
 
-拿 `org.bouncycastle:bcprov-jdk18on:1.81` 查 OSV，只会命中一条 2023 年的老漏洞。
+拿 `org.bouncycastle:bcprov-jdk18on:1.81` 查 OSV，命中的是另外两条
+（`CVE-2025-14813`、`CVE-2026-0636`），**这 4 条 critical 一条都不在**。
+
+> ⚠️ 说清楚边界：**不是「BC 的漏洞 Dependabot 全看不见」** ——
+> 同一批里的 `CVE-2026-0636` 就是 reviewed、有包信息、正常告警的。
+> 看不见的是这 4 条 critical。
 
 | CVE | GHSA | 状态 | 包数 |
 |---|---|---|---|
@@ -116,6 +121,17 @@ TLS、证书校验、JWT、PDF 签名、PGP 都会引它。所以本工具不看
 - 报告里逐条附上官方原文，你可以自己核对
 
 重新生成：`python tools/gen_rules.py`
+
+### 🔴 判定范围（看到 OK 之前先读这段）
+
+本工具只覆盖官方 wiki 上 **2026 年的 37 条 CVE**。
+**2026 年之前的 Bouncy Castle 漏洞不在范围内** —— 那些多数已进 OSV，
+Dependabot / SCA 查得到，本工具不重复造轮子。
+
+举个具体的：`org.bouncycastle:bcprov-jdk18on:1.81` 在 OSV 里能查到
+`CVE-2025-14813` 和 `CVE-2026-0636` —— 前者本工具**不覆盖**（2025 年），
+后者覆盖。所以本工具报 `OK` 的意思是「**不受 2026 年这批影响**」，
+不是「你的 Bouncy Castle 完全没问题」。**两者要一起看，不是二选一。**
 
 ### 已知的口径问题（不藏着）
 

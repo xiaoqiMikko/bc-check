@@ -24,7 +24,7 @@ import java.util.Set;
  */
 public final class Main {
 
-    static final String VERSION = "0.1.0";
+    static final String VERSION = "0.1.1";
 
     private static final int EXIT_OK = 0;
     private static final int EXIT_FOUND = 1;
