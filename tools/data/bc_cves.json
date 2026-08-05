@@ -1,0 +1,224 @@
+[
+ {
+  "cve": "CVE-2026-0636",
+  "title": "LDAP Injection Vulnerability in LDAPStoreHelper.java",
+  "affecting": "BC 1.74 to 1.80.1, BC 1.81, BC 1.82 to BC 1.83",
+  "fixed": "BC 1.80.2, BC 1.81.1, BC 1.84"
+ },
+ {
+  "cve": "CVE-2026-12185",
+  "title": "BKS/UBER keystore allocates from untrusted lengths before integrity check",
+  "affecting": "BC before 1.85, BC-LTS before 2.73.12",
+  "fixed": "BC 1.85, BC-LTS 2.73.12"
+ },
+ {
+  "cve": "CVE-2026-12802",
+  "title": "CMS AuthEnvelopedData fails to enforce tag-length on decryption",
+  "affecting": "BC before 1.85, BC-LTS before 2.73.12, BC-FJA before bcpkix-fips 1.0.12, 2.0.12 and 2.1.12",
+  "fixed": "BC 1.85, BC-LTS 2.73.12, BC-FJA bcpkix-fips 1.0.12, 2.0.12 and 2.1.12"
+ },
+ {
+  "cve": "CVE-2026-12803",
+  "title": "KCCMBlockCipher MAC does not bind nonce when AAD is absent (cross-nonce AEAD forgery)",
+  "affecting": "BC before 1.85, BC-LTS before 2.73.12",
+  "fixed": "BC 1.85, BC-LTS 2.73.12"
+ },
+ {
+  "cve": "CVE-2026-12816",
+  "title": "IESEngine stream-mode MAC forgery via length-dependent KDF split",
+  "affecting": "BC before 1.85, BC-LTS before 2.73.12",
+  "fixed": "BC 1.85, BC-LTS 2.73.12"
+ },
+ {
+  "cve": "CVE-2026-12817",
+  "title": "OpenPGP AEAD decryption skips final tag on chunk-aligned data",
+  "affecting": "BC before 1.85 (from 1.74), BC-LTS before 2.73.12, BC-FJA before bcpg-fips 1.0.13 (from 1.0.7), 2.0.13 and 2.1.13",
+  "fixed": "BC 1.85, BC-LTS 2.73.12, BC-FJA bcpg-fips 1.0.13 (from 1.0.7), 2.0.13 and 2.1.13"
+ },
+ {
+  "cve": "CVE-2026-12852",
+  "title": "MLS wire decoder allocates attacker-declared opaque length before bounds check",
+  "affecting": "BC before 1.85 (from 1.73)",
+  "fixed": "BC 1.85"
+ },
+ {
+  "cve": "CVE-2026-12860",
+  "title": "RSA PKCS#1 verification skips last two hash bytes in NULL-omitted path",
+  "affecting": "BC before 1.85, BC-LTS before 2.73.12",
+  "fixed": "BC 1.85, BC-LTS 2.73.12"
+ },
+ {
+  "cve": "CVE-2026-13506",
+  "title": "Lazy ASN.1 sequence forcing resets nesting-depth guard",
+  "affecting": "BC before 1.85, BC-LTS before 2.73.12, BC-FJA before bc-fips 1.0.2.7, 2.0.2 and 2.1.3",
+  "fixed": "BC 1.85, BC-LTS 2.73.12, BC-FJA bc-fips 1.0.2.7, 2.0.2 and 2.1.3"
+ },
+ {
+  "cve": "CVE-2026-13586",
+  "title": "PKCS#12 MAC and bag-decryption KDF iteration-count bound (DoS)",
+  "affecting": "BC before 1.85, BC-LTS before 2.73.12, BC-FJA before bc-fips 1.0.2.7, 2.0.2 and 2.1.3",
+  "fixed": "BC 1.85, BC-LTS 2.73.12, BC-FJA bc-fips 1.0.2.7, 2.0.2 and 2.1.3"
+ },
+ {
+  "cve": "CVE-2026-14682",
+  "title": "Possible OOM from unbounded up-front allocation on a definite-length read",
+  "affecting": "BC before 1.85, BC-LTS before 2.73.12, BC-FJA before bc-fips 1.0.2.7, 2.0.2 and 2.1.3, BC-FJA before bctls-fips 1.0.24",
+  "fixed": "BC 1.85, BC-LTS 2.73.12, BC-FJA bc-fips 1.0.2.7, 2.0.2 and 2.1.3, BC-FJA bctls-fips 1.0.24"
+ },
+ {
+  "cve": "CVE-2026-15055",
+  "title": "PKCS#8 / PBES2 decryptors honour unbounded KDF cost from input",
+  "affecting": "BC before 1.85, BC-LTS before 2.73.12, BC-FJA before bcpkix-fips 1.0.12, 2.0.12 and 2.1.12",
+  "fixed": "BC 1.85, BC-LTS 2.73.12, BC-FJA bcpkix-fips 1.0.12, 2.0.12 and 2.1.12"
+ },
+ {
+  "cve": "CVE-2026-3505",
+  "title": "Unbounded PGP AEAD chunk size leads to pre-auth resource exhaustion",
+  "affecting": "BC 1.74 to 1.80.1, BC 1.81, BC 1.82 to BC 1.83",
+  "fixed": "BC 1.80.2, BC 1.81.1, BC 1.84"
+ },
+ {
+  "cve": "CVE-2026-5588",
+  "title": "PKIX draft CompositeVerifier accepts empty signature sequence as valid",
+  "affecting": "BC 1.67 to 1.80.1, BC 1.81, BC 1.82 to BC 1.83. BCPKIX-FIPS 2.0.6 to 2.0.10. BCPKIX-FIPS 2.1.7 to 2.1.10. BCPKIX-LTS 2.73.7 to 2.73.10",
+  "fixed": "BC 1.80.2, BC 1.81.1, BC 1.84, BCPKIX-FIPS 2.0.11, BCPKIX-FIPS 2.1.11, BCPKIX-LTS 2.73.11"
+ },
+ {
+  "cve": "CVE-2026-5598",
+  "title": "Non-constant time comparisons risk private key leakage in FrodoKEM",
+  "affecting": "BC 1.71 to 1.80.1, BC 1.81, BC 1.82 to BC 1.83",
+  "fixed": "BC 1.80.2, BC 1.81.1, BC 1.84"
+ },
+ {
+  "cve": "CVE-2026-58059",
+  "title": "Quadratic-time escaping when stringifying X.500 distinguished names",
+  "affecting": "BC before 1.85, BC-LTS before 2.73.12, BC-FJA before bc-fips 1.0.2.7, 2.0.2 and 2.1.3",
+  "fixed": "BC 1.85, BC-LTS 2.73.12, BC-FJA bc-fips 1.0.2.7, 2.0.2 and 2.1.3"
+ },
+ {
+  "cve": "CVE-2026-58060",
+  "title": "HSS public-key level count unbounded, enabling huge allocation on verify",
+  "affecting": "BC before 1.85 (from 1.65), BC-LTS before 2.73.12, BC-FJA before bc-fips 2.0.2 and 2.1.3",
+  "fixed": "BC 1.85, BC-LTS 2.73.12, BC-FJA bc-fips 2.0.2 and 2.1.3"
+ },
+ {
+  "cve": "CVE-2026-58061",
+  "title": "CCM-family modes write plaintext to caller buffer before tag check",
+  "affecting": "BC before 1.85, BC-LTS before 2.73.12, BC-FJA before bc-fips 1.0.2.7, 2.0.2 and 2.1.3",
+  "fixed": "BC 1.85, BC-LTS 2.73.12, BC-FJA bc-fips 1.0.2.7, 2.0.2 and 2.1.3"
+ },
+ {
+  "cve": "CVE-2026-58062",
+  "title": "Stapled OCSP response accepted without binding to the checked certificate",
+  "affecting": "BC before 1.85 (from 1.66), BC-LTS before 2.73.12, BC-FJA before bc-fips 2.0.2 and 2.1.3",
+  "fixed": "BC 1.85, BC-LTS 2.73.12, BC-FJA bc-fips 2.0.2 and 2.1.3"
+ },
+ {
+  "cve": "CVE-2026-58063",
+  "title": "BCFKS keystore load honours unbounded KDF cost from untrusted file",
+  "affecting": "BC before 1.85, BC-LTS before 2.73.12, BC-FJA before bc-fips 1.0.2.7, 2.0.2 and 2.1.3",
+  "fixed": "BC 1.85, BC-LTS 2.73.12, BC-FJA bc-fips 1.0.2.7, 2.0.2 and 2.1.3"
+ },
+ {
+  "cve": "CVE-2026-59638",
+  "title": "JSSE hostname verifier CN-fallback enabled by default despite documented opt-in",
+  "affecting": "BC before 1.85 (from 1.61), BC-LTS before 2.73.12, BC-FJA before bctls-fips 1.0.24 (from 1.0.7), 2.0.24 and 2.1.24",
+  "fixed": "BC 1.85, BC-LTS 2.73.12, BC-FJA bctls-fips 1.0.24 (from 1.0.7), 2.0.24 and 2.1.24"
+ },
+ {
+  "cve": "CVE-2026-59639",
+  "title": "CMS verifySignatures returns true for SignedData with zero signers",
+  "affecting": "BC before 1.85, BC-LTS before 2.73.12, BC-FJA before bcpkix-fips 1.0.12, 2.0.12 and 2.1.12",
+  "fixed": "BC 1.85, BC-LTS 2.73.12, BC-FJA bcpkix-fips 1.0.12, 2.0.12 and 2.1.12"
+ },
+ {
+  "cve": "CVE-2026-59640",
+  "title": "OpenPGP CFB quick-check oracle active on symmetric/session-key paths",
+  "affecting": "BC before 1.85, BC-LTS before 2.73.12, BC-FJA before bcpg-fips 1.0.13, 2.0.13 and 2.1.13",
+  "fixed": "BC 1.85, BC-LTS 2.73.12, BC-FJA bcpg-fips 1.0.13, 2.0.13 and 2.1.13"
+ },
+ {
+  "cve": "CVE-2026-59641",
+  "title": "S/MIME validator trusts signer-asserted signingTime for path validation",
+  "affecting": "BC before 1.85, BC-LTS before 2.73.12, BC-FJA before bcmail-fips 1.0.7, 2.0.7 and 2.1.7, BC-FJA before bcjmail-fips 1.0.7 (from 1.0.4), 2.0.7 and 2.1.7",
+  "fixed": "BC 1.85, BC-LTS 2.73.12, BC-FJA bcmail-fips 1.0.7, 2.0.7 and 2.1.7 and bcjmail-fips 1.0.7 (from 1.0.4), 2.0.7 and 2.1.7"
+ },
+ {
+  "cve": "CVE-2026-59642",
+  "title": "CMS AuthenticatedData content not bound to MAC when authAttrs present",
+  "affecting": "BC before 1.85, BC-LTS before 2.73.12, BC-FJA before bcpkix-fips 1.0.12, 2.0.12 and 2.1.12",
+  "fixed": "BC 1.85, BC-LTS 2.73.12, BC-FJA bcpkix-fips 1.0.12, 2.0.12 and 2.1.12"
+ },
+ {
+  "cve": "CVE-2026-59643",
+  "title": "OpenPGP inline-signature policy failures silently ignored",
+  "affecting": "BC before 1.85 (from 1.81), BC-FJA before bcpg-fips 2.0.13 (from 2.0.12)",
+  "fixed": "BC 1.85, BC-FJA bcpg-fips 2.0.13"
+ },
+ {
+  "cve": "CVE-2026-59644",
+  "title": "MLS hash-ratchet honours arbitrary 32-bit generation counter from sender",
+  "affecting": "BC before 1.85 (from 1.73)",
+  "fixed": "BC 1.85"
+ },
+ {
+  "cve": "CVE-2026-59645",
+  "title": "OER parser recurses without depth limit on self-referential IEEE 1609.2 schema",
+  "affecting": "BC before 1.85 (from 1.70), BC-LTS before 2.73.12, BC-FJA before bcutil-fips 2.0.7 and 2.1.7",
+  "fixed": "BC 1.85, BC-LTS 2.73.12, BC-FJA bcutil-fips 2.0.7 and 2.1.7"
+ },
+ {
+  "cve": "CVE-2026-59646",
+  "title": "DTLS handshake reassembler allocates buffer from unchecked 24-bit length",
+  "affecting": "BC before 1.85, BC-LTS before 2.73.12, BC-FJA before bctls-fips 1.0.24, 2.0.24 and 2.1.24",
+  "fixed": "BC 1.85, BC-LTS 2.73.12, BC-FJA bctls-fips 1.0.24, 2.0.24 and 2.1.24"
+ },
+ {
+  "cve": "CVE-2026-59647",
+  "title": "CRMF/CMP password-MAC honours unbounded iteration count",
+  "affecting": "BC before 1.85, BC-LTS before 2.73.12, BC-FJA before bcpkix-fips 1.0.12, 2.0.12 and 2.1.12",
+  "fixed": "BC 1.85, BC-LTS 2.73.12, BC-FJA bcpkix-fips 1.0.12, 2.0.12 and 2.1.12"
+ },
+ {
+  "cve": "CVE-2026-59648",
+  "title": "OpenPGP Argon2 S2K honours attacker-chosen memory and passes",
+  "affecting": "BC before 1.85 (from 1.71), BC-LTS before 2.73.12, BC-FJA before bcpg-fips 1.0.13 (from 1.0.6), 2.0.13 and 2.1.13",
+  "fixed": "BC 1.85, BC-LTS 2.73.12, BC-FJA bcpg-fips 1.0.13 (from 1.0.6), 2.0.13 and 2.1.13"
+ },
+ {
+  "cve": "CVE-2026-59649",
+  "title": "OpenPGP user-attribute subpacket length bounded only by JVM max memory",
+  "affecting": "BC before 1.85, BC-LTS before 2.73.12, BC-FJA before bcpg-fips 1.0.13, 2.0.13 and 2.1.13",
+  "fixed": "BC 1.85, BC-LTS 2.73.12, BC-FJA bcpg-fips 1.0.13, 2.0.13 and 2.1.13"
+ },
+ {
+  "cve": "CVE-2026-59650",
+  "title": "MTI/A0 DH agreement exponentiates unvalidated peer value",
+  "affecting": "BC before 1.85, BC-LTS before 2.73.12",
+  "fixed": "BC 1.85, BC-LTS 2.73.12"
+ },
+ {
+  "cve": "CVE-2026-59651",
+  "title": "BKS keystore accepts legacy version with 16-bit integrity MAC key",
+  "affecting": "BC before 1.85, BC-LTS before 2.73.12",
+  "fixed": "BC 1.85, BC-LTS 2.73.12"
+ },
+ {
+  "cve": "CVE-2026-59652",
+  "title": "LDAP filter injection in legacy jdk1.4 LDAPStoreHelper",
+  "affecting": "BC before 1.85",
+  "fixed": "BC 1.85"
+ },
+ {
+  "cve": "CVE-2026-8149",
+  "title": "GCM chunking can lead to bad tag exception on decryption",
+  "affecting": "BC-LTS 2.73.0 to 2.73.10",
+  "fixed": "BC-LTS 2.73.11"
+ },
+ {
+  "cve": "CVE-2026-8763",
+  "title": "Name Constraints bypass via trailing dot in rfc822Name and URI",
+  "affecting": "BC before 1.85, BC-LTS before 2.73.12, BC-FJA before bc-fips 1.0.2.7, 2.0.2 and 2.1.3",
+  "fixed": "BC 1.85, BC-LTS 2.73.12, BC-FJA bc-fips 1.0.2.7, 2.0.2 and 2.1.3"
+ }
+]

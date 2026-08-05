@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>io.mikko</groupId>
+  <artifactId>bc-check</artifactId>
+  <version>0.1.0</version>
+  <packaging>jar</packaging>
+
+  <name>bc-check</name>
+  <description>Offline scanner that finds Bouncy Castle in your JARs and tells you which of the 2026 CVEs actually apply — across BC, BC-LTS and BC-FJA (FIPS), which do not share a version scheme.</description>
+
+  <properties>
+    <!--
+      刻意编到 Java 8：应急排查工具要能直接丢到客户/生产机器上跑，
+      而企业环境里大量 JRE 仍是 8。用 release 而非 source/target，
+      保证不会误用高版本 JDK 的 API。
+    -->
+    <maven.compiler.release>8</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <!--
+    刻意保持零运行时依赖：
+    1. 打出来的 jar 极小，可直接 java -jar 跑，不需要任何部署
+    2. 排查 Bouncy Castle 的工具自己绝不能依赖 Bouncy Castle
+    仅用 JDK 自带的 java.util.zip 读 jar。
+  -->
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.2</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>bc-check</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.2</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.3.0</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <mainClass>io.mikko.bccheck.Main</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
