@@ -24,11 +24,20 @@ import java.util.Set;
  */
 public final class Main {
 
-    static final String VERSION = "0.1.2";
+    static final String VERSION = "0.1.3";
 
     private static final int EXIT_OK = 0;
     private static final int EXIT_FOUND = 1;
     private static final int EXIT_USAGE = 2;
+
+    /**
+     * 有文件读不动 —— 「我没能读它」不许在自动化里等于「通过」。
+     *
+     * <p>2026-09-09 加。在此之前读不动只在输出里留一行提示,退出码照旧是 0,
+     * 而 CI 与脚本看的是退出码。留痕给人看,退出码给机器看,两者缺一不可。
+     * <p>发现了真问题时不降级成它:命中比读不动更要紧。
+     */
+    private static final int EXIT_UNREADABLE = 4;
 
     /**
      * 全部输出走这里，以便控制字符编码。
@@ -119,7 +128,7 @@ public final class Main {
                 System.exit(EXIT_FOUND);
             }
         }
-        System.exit(EXIT_OK);
+        System.exit(scanner.unreadableCount() > 0 ? EXIT_UNREADABLE : EXIT_OK);
     }
 
     /**

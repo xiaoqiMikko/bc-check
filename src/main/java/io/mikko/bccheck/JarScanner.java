@@ -52,6 +52,15 @@ public class JarScanner {
 
     private final List<Detection> detections = new ArrayList<Detection>();
     private final List<String> warnings = new ArrayList<String>();
+
+    /**
+     * 有多少个文件是「读不动」的(不是 zip / 截断 / IO 失败 / 目录读不了)。
+     *
+     * <p>🔴 它存在的理由是退出码:留痕是给人看的,而 CI 与脚本看的是退出码 ——
+     * 少了它,「我没能读它」在自动化里等于「通过」。
+     * <p>🔴 用计数器而不是去匹配告警文案:文案改一个字,匹配式判据就安静失效了。
+     */
+    private int unreadable;
     private int scannedArchives;
 
     public List<Detection> detections() {
@@ -60,6 +69,11 @@ public class JarScanner {
 
     public List<String> warnings() {
         return warnings;
+    }
+
+    /** 读不动的文件数 —— 大于 0 时退出码不许是 0。 */
+    public int unreadableCount() {
+        return unreadable;
     }
 
     public int scannedArchives() {
@@ -84,6 +98,7 @@ public class JarScanner {
     private void scanDirectory(File dir) {
         File[] children = dir.listFiles();
         if (children == null) {
+            unreadable++;
             warnings.add("目录无法读取：" + dir.getPath());
             return;
         }
@@ -102,6 +117,7 @@ public class JarScanner {
             in = new FileInputStream(file);
             scanArchiveStream(in, file.getPath(), file.getName(), 0, false);
         } catch (IOException e) {
+            unreadable++;
             warnings.add("读取失败 " + file.getPath() + "：" + e.getMessage());
         } finally {
             closeQuietly(in);
@@ -152,6 +168,7 @@ public class JarScanner {
             pin.unread(head, 0, got);
         }
         if (!looksLikeZip(head, got)) {
+            unreadable++;
             warnings.add("这个文件读不动，不是有效的 zip/jar：" + location
                     + "（截断、加密，或其实是个 HTML 错误页）—— 🔴 这不等于「里面没有 BouncyCastle」");
             return;
@@ -209,6 +226,7 @@ public class JarScanner {
         //    文件魔数是对的、ZipInputStream 也不抛异常,只是零条目。
         //    合法的空 zip 以 PK 05 06 开头(一条 22 字节的 EOCD 记录),那是真的空,不报。
         if (entries == 0 && !(head[2] == 5 && head[3] == 6)) {
+            unreadable++;
             warnings.add("这个文件魔数像 zip，但一个条目都解不出来(多半是截断或下载不全)：" + location
                     + " —— 🔴 这不等于「里面没有 BouncyCastle」");
             return;
@@ -247,6 +265,7 @@ public class JarScanner {
                 scanArchiveStream(new ByteArrayInputStream(na.content), childLocation, childName,
                         depth + 1, fatJarContext);
             } catch (IOException e) {
+                unreadable++;
                 warnings.add("嵌套包读取失败 " + childLocation + "：" + e.getMessage());
             }
         }
