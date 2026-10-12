@@ -47,23 +47,31 @@ java -jar bc-check.jar --gav bcprov-lts8on:2.73.5 --detail
 
 ## 还有一件事：这批 CVE 你的 Dependabot 大概率不会告警
 
-**这 4 条 CVSS critical** 在 GitHub Advisory 里的状态是 `unreviewed`，
+> **更正（2026-10-12）**：本节原先写「4 条 CVSS critical 全部 `unreviewed`、Dependabot 看不见」。
+> 其中 `CVE-2026-8763` 已于 **2026-09-18** 被 GitHub 审核收录并补上了包信息，
+> 现在 Dependabot 和 OSV **看得见它**。仍然看不见的是另外 **3 条**。下面是按 2026-10-12 实测改过的版本。
+
+4 条 CVSS critical 里，**有 3 条**在 GitHub Advisory 里的状态仍是 `unreviewed`，
 **受影响包列表是空的**（包数 0）。没有包名就无法匹配依赖树 ——
 它们不进 OSV，Dependabot 不告警，SCA 扫依赖清单也扫不出来。
 
-拿 `org.bouncycastle:bcprov-jdk18on:1.81` 查 OSV，命中的是另外两条
-（`CVE-2025-14813`、`CVE-2026-0636`），**这 4 条 critical 一条都不在**。
+拿 `org.bouncycastle:bcprov-jdk18on:1.81` 查 OSV（2026-10-12），命中 4 条：
+`CVE-2025-14813`、`CVE-2026-0636`、`CVE-2026-13506`、`CVE-2026-8763` ——
+**另外 3 条 critical 一条都不在**。
 
 > ⚠️ 说清楚边界：**不是「BC 的漏洞 Dependabot 全看不见」** ——
 > 同一批里的 `CVE-2026-0636` 就是 reviewed、有包信息、正常告警的。
-> 看不见的是这 4 条 critical。
+> 看不见的是下表里标 `unreviewed` 的这 3 条 critical。
 
-| CVE | GHSA | 状态 | 包数 |
+| CVE | GHSA | 状态（2026-10-12） | 包数 |
 |---|---|---|---|
 | CVE-2026-58062 | GHSA-j295-77c3-9frf | unreviewed | 0 |
-| CVE-2026-8763 | GHSA-9pwp-9qqc-pr26 | unreviewed | 0 |
+| CVE-2026-8763 | GHSA-9pwp-9qqc-pr26 | **reviewed（2026-09-18 起）** | 6 |
 | CVE-2026-59650 | GHSA-ghgq-7g74-28wp | unreviewed | 0 |
 | CVE-2026-59638 | GHSA-8rxj-3p7p-rq39 | unreviewed | 0 |
+
+全局库给 `CVE-2026-8763` 登记的修复版是 `bcprov-jdk18on` / `bcprov-jdk15to18` `1.85`、
+`bcprov-lts8on` `2.73.12`、`bc-fips` `1.0.2.7` / `2.0.2` / `2.1.3`，与本工具的判定表一致。
 
 ## 用法
 
